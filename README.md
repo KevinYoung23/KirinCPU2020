@@ -13,19 +13,17 @@ You may assume that the **CPU word length (and the C++ int variables used below)
 ***
 
 #### **Structure (Unfinalised)**:
-📦CPU2020
- ┣ 📂Task 1
-
- ┃ ┣ 📂code
-
- ┃ ┃ ┣ 📜.DS_Store
- ┃ ┃ ┣ 📜Fibonacci.cpp
- ┃ ┃ ┣ 📜LCG.cpp
- ┃ ┃ ┗ 📜linkedlist.cpp
- ┃ ┗ 📜.DS_Store
- ┣ 📂Task 2
- ┣ 📂Task 3
- ┗ 📜README.md
+📦CPU2020 </br>
+ ┣ 📂Task 1 </br>
+ ┃ ┣ 📂code </br>
+ ┃ ┃ ┣ 📜.DS_Store </br>
+ ┃ ┃ ┣ 📜Fibonacci.cpp </br>
+ ┃ ┃ ┣ 📜LCG.cpp </br>
+ ┃ ┃ ┗ 📜linkedlist.cpp </br>
+ ┃ ┗ 📜.DS_Store </br>
+ ┣ 📂Task 2 </br>
+ ┣ 📂Task 3 </br>
+ ┗ 📜README.md </br>
 
 
 #### **✅ Task 1: *Calculate Fibonacci numbers using recursion***

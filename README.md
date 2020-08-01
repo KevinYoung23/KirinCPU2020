@@ -10,9 +10,10 @@ Design a CPU with an ISA that is optimised to execute the following algorithms e
 
 You may assume that the **CPU word length (and the C++ int variables used below) are all 16 bits**. Your CPU should **implement enough memory for at least 2K words of instructions and 2K words of data**. Your CPU may use separate instruction and data memory units, or one combined memory unit.
 
-***
+---
 
 #### **Structure (Unfinalised)**:
+
 📦CPU2020 </br>
  ┣ 📂Task 1 </br>
  ┃ ┣ 📂code </br>
@@ -24,6 +25,8 @@ You may assume that the **CPU word length (and the C++ int variables used below)
  ┣ 📂Task 2 </br>
  ┣ 📂Task 3 </br>
  ┗ 📜README.md </br>
+
+***
 
 
 #### **✅ Task 1: *Calculate Fibonacci numbers using recursion***
@@ -54,9 +57,11 @@ A typical use of the benchmark would be **fib(5)**.
 
 #### 💡Task 1 Approach
 
-##### ✨Highlight in our Design：
+##### ✨Highlight in this Design：
 
 Rather than performing a recursive loop to calculate a fibonacci number which has an **exponential increasing rate of execution time**, in our design, we choose to use a **linear increasing rate** so that it takes less time to perform fibonacci calculation. Another improvement of this design is besides stacking the memory, it can also read from the previous history if the given input number is  already calculated from the calculation before.
+
+
 
 **ISA: **
 

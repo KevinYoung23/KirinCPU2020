@@ -35,8 +35,6 @@ This benchmark requires a ***stack*** to keep track of all the nested intermedia
 
 *Code example:* 		
 
-`int fib(const int n){`
-
 `int fib(const int n){` 
 
 `int y;`

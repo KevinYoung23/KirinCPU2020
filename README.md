@@ -132,27 +132,27 @@ This is used to help write the decoder verilog file which 0 illustrates port is 
 
 This list generalises the components used in this task and the corresponding functionality.
 
-|        Name        |        Component        | Quantity |                                  Function                                   |
-| :----------------: | :---------------------: | :------: | :-------------------------------------------------------------------------: |
-| Instruction + Data | RAM(16 bits&4096 words) |    1     |                Store the instruction and data to be executed                |
-|       EQ_MI        |      Verilog File       |    1     |                         Provide signal to JMI & JEQ                         |
-|      LDA_LDI       |      Verilog File       |    1     |                   Overcome the difference in word length                    |
-|      Decoder       |      Verilog File       |    1     |              Main control unit that controls each port in CPU               |
-|    Statemachine    |      Verilog File       |    1     |                        Control the state of the CPU                         |
-|     Fibonacci      |      Verilog File       |    1     |         A special block designed specifically for Fibonacci series          |
-|     LCG            |      Verilog File       |    1     |         A special block designed specifically for linear congruential generator|
-|     LKL            |      Verilog File       |    1     |         A special block designed specifically for linked list         |
-|        Dffn        |          .bdf           |    1     |                         Store the current the state                         |
-|         IR         |         LPM_FF          |    1     |                        Store the current instruction                        |
-|        ALU         |       LPM_ADD_SUB       |    1     |                           Do Arithmetic operation                           |
-|         PC         |       LPM_COUNTER       |    1     |                Record the memory address of next instruction                |
-|        ACC         |      LPM_SHIFTREG       |    1     |                   Store the results after most executions                   |
+|        Name        |        Component        | Quantity |                           Function                           |
+| :----------------: | :---------------------: | :------: | :----------------------------------------------------------: |
+| Instruction + Data | RAM(16 bits&4096 words) |    1     |        Store the instruction and data to be executed         |
+|       EQ_MI        |      Verilog File       |    1     |                 Provide signal to JMI & JEQ                  |
+|      LDA_LDI       |      Verilog File       |    1     |            Overcome the difference in word length            |
+|      Decoder       |      Verilog File       |    1     |       Main control unit that controls each port in CPU       |
+|    Statemachine    |      Verilog File       |    1     |                 Control the state of the CPU                 |
+|     Fibonacci      |      Verilog File       |    1     |  A special block designed specifically for Fibonacci series  |
+|        LCG         |      Verilog File       |    1     | A special block designed specifically for linear congruential generator |
+|        LKL         |      Verilog File       |    1     |    A special block designed specifically for linked list     |
+|        Dffn        |          .bdf           |    1     |                 Store the current the state                  |
+|         IR         |         LPM_FF          |    1     |                Store the current instruction                 |
+|        ALU         |       LPM_ADD_SUB       |    1     |                   Do Arithmetic operation                    |
+|         PC         |       LPM_COUNTER       |    1     |        Record the memory address of next instruction         |
+|        ACC         |      LPM_SHIFTREG       |    1     |           Store the results after most executions            |
 |        MUX1        |         BUSMUX          |    1     | Select between the address from PC and operand from the current instruction |
-|        MUX2        |         BUSMUX          |    1     |                      Save one clock cycle after fetch                       |
-|        MUX3        |         BUSMUX          |    1     |              Select between the value from ALU or the LDA_LDI               |
-|        MUX4        |         NUXMUX          |    1     |                       Select between the ACC and RAM                        |
-|        MUX5        |         NUXMUX          |    1     |                       Select between the PC address and LKL pointing address connected to RAM address |
-|        MUX6        |         NUXMUX          |    1     |                       Select between the LKL result and other instructions' results connected to accumulator                       |
+|        MUX2        |         BUSMUX          |    1     |               Save one clock cycle after fetch               |
+|        MUX3        |         BUSMUX          |    1     |       Select between the value from ALU or the LDA_LDI       |
+|        MUX4        |         BUXMUX          |    1     |                Select between the ACC and RAM                |
+|        MUX5        |         BUXMUX          |    1     | Select between the PC address and LKL pointing address connected to RAM address |
+|        MUX6        |         BUXMUX          |    1     | Select between the LKL result and other instructions' results connected to accumulator |
 
 ---
 
@@ -186,11 +186,11 @@ A typical use of the benchmark would be **fib(5)**.
 
 ##### ✨Highlight in this Design：
 
-Rather than performing a recursive loop to calculate a fibonacci number which has an **exponential increasing rate of execution time**, in our design, we choose to use a **linear increasing rate** so that it takes less time to perform fibonacci calculation. Another improvement of this design is besides stacking the memory, it can also read from the previous history if the given input number is  already calculated from the calculation before.
+Rather than performing a recursive loop to calculate a Fibonacci number which has an **exponential increasing rate of execution time**, in our design, we choose to use a **linear increasing rate** so that it takes less time to perform Fibonacci calculation. Another improvement of this design is besides stacking the memory, it can also read from the previous history if the given input number is  already calculated from the calculation before.
 
 **ISA: **
 
-It keeps the MU0 ISA so that each instruction is composed of **4 bit opcode + 1 bit random + 11 bit oprand**.
+It keeps the MU0 ISA so that each instruction is composed of **4 bit opcode + 1 bit random + 11 bit operand**.
 
 
 
@@ -236,7 +236,7 @@ In our LCG.cpp program, we put the first 65536 (2<sup>16</sup>) terms of the ran
 
 ##### ✨Highlight in this Design:
 
-For the LKL instruction, the last 12 bits oprand is set to be the number of random numbers user wants to generate. So the number of random numbers generated are purely decided by the user.
+For the LKL instruction, the last 12 bits operand is set to be the number of random numbers user wants to generate. So the number of random numbers generated are purely decided by the user.
 
 
 
@@ -280,7 +280,7 @@ You will need to create a linked list in your RAM initialisation data to test th
 
 ##### ✨Highlight in this Design:
 
-The LKL instruction cosists of [15:12] opcode, [11:8] target (value x refering to code example) and [7:0] head. The IR will only load the instruction once and the pointing process is achieved by another verilog block which is called LKL.v. This pointing process will keep going until the head -> value is equal to the target value and it will load the address where this value is stored (which is the oprand of the previous 16-bit instruction) to accumulator.
+The LKL instruction cosists of [15:12] opcode, [11:8] target (value x referring to code example) and [7:0] head. The IR will only load the instruction once and the pointing process is achieved by another verilog block which is called LKL.v. This pointing process will keep going until the head -> value is equal to the target value and it will load the address where this value is stored (which is the operand of the previous 16-bit instruction) to accumulator.
 
 ---
 

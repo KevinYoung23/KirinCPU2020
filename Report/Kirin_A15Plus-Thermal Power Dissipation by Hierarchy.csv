@@ -1,0 +1,55 @@
+Copyright (C) 2019  Intel Corporation. All rights reserved.,,,,,
+Your use of Intel Corporation's design tools, logic functions ,,,,
+and other software and tools, and any partner logic ,,,,
+functions, and any output files from any of the foregoing ,,,,
+(including device programming or simulation files), and any ,,,,
+associated documentation or information are expressly subject ,,,,,
+to the terms and conditions of the Intel Program License ,,,,,
+Subscription Agreement, the Intel Quartus Prime License Agreement,,,,
+the Intel FPGA IP License Agreement, or other applicable license,,,,
+agreement, including, without limitation, that your use is for,,
+the sole purpose of programming logic devices manufactured by,,,,,
+Intel and sold by Intel or its authorized distributors.  Please,,,,,
+refer to the applicable agreement for further details, at,,,,
+https://fpgasoftware.intel.com/eula.,,,,,
+,,,,,
+Thermal Power Dissipation by Hierarchy,,,,,
+,,,,,
+Compilation Hierarchy Node,Total Thermal Power by Hierarchy (1),Block Thermal Dynamic Power (1),Block Thermal Static Power (1)(2),Routing Thermal Dynamic Power (1),Full Hierarchy Name
+|Kirin_A15Plus,28.89 mW (17.87 mW),24.56 mW (15.36 mW),0.42 mW (0.42 mW),3.92 mW (2.10 mW),|Kirin_A15Plus
+    |lpm_shiftreg:ACC,0.28 mW (0.28 mW),0.10 mW (0.10 mW),--,0.18 mW (0.18 mW),|Kirin_A15Plus|lpm_shiftreg:ACC
+    |lpm_add_sub:ALU,0.00 mW (0.00 mW),0.00 mW (0.00 mW),--,0.00 mW (0.00 mW),|Kirin_A15Plus|lpm_add_sub:ALU
+        |add_sub_i1b:auto_generated,0.00 mW (0.00 mW),0.00 mW (0.00 mW),--,0.00 mW (0.00 mW),|Kirin_A15Plus|lpm_add_sub:ALU|add_sub_i1b:auto_generated
+    |hard_block:auto_generated_inst,0.00 mW (0.00 mW),0.00 mW (0.00 mW),--,0.00 mW (0.00 mW),|Kirin_A15Plus|hard_block:auto_generated_inst
+    |decoder:inst,0.02 mW (0.02 mW),0.01 mW (0.01 mW),--,0.01 mW (0.01 mW),|Kirin_A15Plus|decoder:inst
+    |lpm_ff:inst1,0.09 mW (0.09 mW),0.01 mW (0.01 mW),--,0.07 mW (0.07 mW),|Kirin_A15Plus|lpm_ff:inst1
+    |Instruction:inst2,3.87 mW (0.00 mW),3.87 mW (0.00 mW),--,0.00 mW (0.00 mW),|Kirin_A15Plus|Instruction:inst2
+        |altsyncram:altsyncram_component,3.87 mW (0.00 mW),3.87 mW (0.00 mW),--,0.00 mW (0.00 mW),|Kirin_A15Plus|Instruction:inst2|altsyncram:altsyncram_component
+            |altsyncram_gro1:auto_generated,3.87 mW (3.87 mW),3.87 mW (3.87 mW),--,0.00 mW (0.00 mW),|Kirin_A15Plus|Instruction:inst2|altsyncram:altsyncram_component|altsyncram_gro1:auto_generated
+    |busmux:inst3,0.00 mW (0.00 mW),0.00 mW (0.00 mW),--,0.00 mW (0.00 mW),|Kirin_A15Plus|busmux:inst3
+        |lpm_mux:$00000,0.00 mW (0.00 mW),0.00 mW (0.00 mW),--,0.00 mW (0.00 mW),|Kirin_A15Plus|busmux:inst3|lpm_mux:$00000
+    |state_machine:inst4,0.01 mW (0.01 mW),0.00 mW (0.00 mW),--,0.01 mW (0.01 mW),|Kirin_A15Plus|state_machine:inst4
+    |LKL:inst5,0.16 mW (0.16 mW),0.10 mW (0.10 mW),--,0.06 mW (0.06 mW),|Kirin_A15Plus|LKL:inst5
+    |busmux:inst6,0.01 mW (0.00 mW),0.01 mW (0.00 mW),--,0.00 mW (0.00 mW),|Kirin_A15Plus|busmux:inst6
+        |lpm_mux:$00000,0.01 mW (0.00 mW),0.01 mW (0.00 mW),--,0.00 mW (0.00 mW),|Kirin_A15Plus|busmux:inst6|lpm_mux:$00000
+            |mux_blc:auto_generated,0.01 mW (0.01 mW),0.01 mW (0.01 mW),--,0.00 mW (0.00 mW),|Kirin_A15Plus|busmux:inst6|lpm_mux:$00000|mux_blc:auto_generated
+    |Fibo_final:inst8,5.69 mW (0.00 mW),4.65 mW (0.00 mW),--,1.04 mW (0.00 mW),|Kirin_A15Plus|Fibo_final:inst8
+        |Fibo:inst,1.75 mW (1.75 mW),0.79 mW (0.79 mW),--,0.97 mW (0.97 mW),|Kirin_A15Plus|Fibo_final:inst8|Fibo:inst
+        |Fib_Ram:inst2,3.94 mW (0.00 mW),3.87 mW (0.00 mW),--,0.07 mW (0.00 mW),|Kirin_A15Plus|Fibo_final:inst8|Fib_Ram:inst2
+            |altsyncram:altsyncram_component,3.94 mW (0.00 mW),3.87 mW (0.00 mW),--,0.07 mW (0.00 mW),|Kirin_A15Plus|Fibo_final:inst8|Fib_Ram:inst2|altsyncram:altsyncram_component
+                |altsyncram_7gm1:auto_generated,3.94 mW (3.94 mW),3.87 mW (3.87 mW),--,0.07 mW (0.07 mW),|Kirin_A15Plus|Fibo_final:inst8|Fib_Ram:inst2|altsyncram:altsyncram_component|altsyncram_7gm1:auto_generated
+    |LCG:inst9,0.61 mW (0.61 mW),0.30 mW (0.30 mW),--,0.31 mW (0.31 mW),|Kirin_A15Plus|LCG:inst9
+    |EQ_MI:inst13,0.01 mW (0.01 mW),0.00 mW (0.00 mW),--,0.00 mW (0.00 mW),|Kirin_A15Plus|EQ_MI:inst13
+    |lpm_ff:IR,0.15 mW (0.15 mW),0.05 mW (0.05 mW),--,0.10 mW (0.10 mW),|Kirin_A15Plus|lpm_ff:IR
+    |busmux:MUX1,0.00 mW (0.00 mW),0.00 mW (0.00 mW),--,0.00 mW (0.00 mW),|Kirin_A15Plus|busmux:MUX1
+        |lpm_mux:$00000,0.00 mW (0.00 mW),0.00 mW (0.00 mW),--,0.00 mW (0.00 mW),|Kirin_A15Plus|busmux:MUX1|lpm_mux:$00000
+    |busmux:MUX2,0.03 mW (0.00 mW),0.03 mW (0.00 mW),--,0.00 mW (0.00 mW),|Kirin_A15Plus|busmux:MUX2
+        |lpm_mux:$00000,0.03 mW (0.00 mW),0.03 mW (0.00 mW),--,0.00 mW (0.00 mW),|Kirin_A15Plus|busmux:MUX2|lpm_mux:$00000
+            |mux_flc:auto_generated,0.03 mW (0.03 mW),0.03 mW (0.03 mW),--,0.00 mW (0.00 mW),|Kirin_A15Plus|busmux:MUX2|lpm_mux:$00000|mux_flc:auto_generated
+    |busmux:MUX3,0.00 mW (0.00 mW),0.00 mW (0.00 mW),--,0.00 mW (0.00 mW),|Kirin_A15Plus|busmux:MUX3
+        |lpm_mux:$00000,0.00 mW (0.00 mW),0.00 mW (0.00 mW),--,0.00 mW (0.00 mW),|Kirin_A15Plus|busmux:MUX3|lpm_mux:$00000
+    |busmux:MUX4,0.00 mW (0.00 mW),0.00 mW (0.00 mW),--,0.00 mW (0.00 mW),|Kirin_A15Plus|busmux:MUX4
+        |lpm_mux:$00000,0.00 mW (0.00 mW),0.00 mW (0.00 mW),--,0.00 mW (0.00 mW),|Kirin_A15Plus|busmux:MUX4|lpm_mux:$00000
+            |mux_flc:auto_generated,0.00 mW (0.00 mW),0.00 mW (0.00 mW),--,0.00 mW (0.00 mW),|Kirin_A15Plus|busmux:MUX4|lpm_mux:$00000|mux_flc:auto_generated
+    |lpm_counter:PC,0.08 mW (0.00 mW),0.05 mW (0.00 mW),--,0.03 mW (0.00 mW),|Kirin_A15Plus|lpm_counter:PC
+        |cntr_0gh:auto_generated,0.08 mW (0.08 mW),0.05 mW (0.05 mW),--,0.03 mW (0.03 mW),|Kirin_A15Plus|lpm_counter:PC|cntr_0gh:auto_generated

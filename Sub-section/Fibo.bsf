@@ -1,0 +1,93 @@
+/*
+WARNING: Do NOT edit the input and output ports in this file in a text
+editor if you plan to continue editing the block that represents it in
+the Block Editor! File corruption is VERY likely to occur.
+*/
+/*
+Copyright (C) 2019  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details, at
+https://fpgasoftware.intel.com/eula.
+*/
+(header "symbol" (version "1.2"))
+(symbol
+	(rect 64 64 432 208)
+	(text "Fibo" (rect 5 0 43 18)(font "Arial" ))
+	(text "inst" (rect 8 128 36 146)(font "Arial" ))
+	(port
+		(pt 0 32)
+		(input)
+		(text "CLK" (rect 0 0 41 18)(font "Arial" ))
+		(text "CLK" (rect 21 27 62 45)(font "Arial" ))
+		(line (pt 0 32)(pt 16 32))
+	)
+	(port
+		(pt 0 48)
+		(input)
+		(text "reset" (rect 0 0 41 18)(font "Arial" ))
+		(text "reset" (rect 21 43 62 61)(font "Arial" ))
+		(line (pt 0 48)(pt 16 48))
+	)
+	(port
+		(pt 0 64)
+		(input)
+		(text "operand[11..0]" (rect 0 0 119 18)(font "Arial" ))
+		(text "operand[11..0]" (rect 21 59 140 77)(font "Arial" ))
+		(line (pt 0 64)(pt 16 64)(line_width 3))
+	)
+	(port
+		(pt 0 80)
+		(input)
+		(text "number[15..0]" (rect 0 0 112 18)(font "Arial" ))
+		(text "number[15..0]" (rect 21 75 133 93)(font "Arial" ))
+		(line (pt 0 80)(pt 16 80)(line_width 3))
+	)
+	(port
+		(pt 368 32)
+		(output)
+		(text "wren" (rect 160 0 198 18)(font "Arial" ))
+		(text "wren" (rect 315 27 347 45)(font "Arial" ))
+		(line (pt 368 32)(pt 352 32))
+	)
+	(port
+		(pt 368 48)
+		(output)
+		(text "ready" (rect 160 0 206 18)(font "Arial" ))
+		(text "ready" (rect 309 43 347 61)(font "Arial" ))
+		(line (pt 368 48)(pt 352 48))
+	)
+	(port
+		(pt 368 64)
+		(output)
+		(text "address[11..0]" (rect 160 0 278 18)(font "Arial" ))
+		(text "address[11..0]" (rect 248 59 347 77)(font "Arial" ))
+		(line (pt 368 64)(pt 352 64)(line_width 3))
+	)
+	(port
+		(pt 368 80)
+		(output)
+		(text "result[15..0]" (rect 160 0 254 18)(font "Arial" ))
+		(text "result[15..0]" (rect 268 75 347 93)(font "Arial" ))
+		(line (pt 368 80)(pt 352 80)(line_width 3))
+	)
+	(port
+		(pt 368 96)
+		(output)
+		(text "bsf[11..0]" (rect 160 0 235 18)(font "Arial" ))
+		(text "bsf[11..0]" (rect 284 91 347 109)(font "Arial" ))
+		(line (pt 368 96)(pt 352 96)(line_width 3))
+	)
+	(drawing
+		(rectangle (rect 16 16 192 128))
+	)
+)

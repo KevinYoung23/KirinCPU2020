@@ -16,29 +16,31 @@ You may assume that the **CPU word length (and the C++ int variables used below)
 ```markdown
 📦CPU Project
  ┣ 📂C++ Code
+ ┃ ┣ 📜.DS_Store
  ┃ ┣ 📜Fibonacci.cpp
  ┃ ┣ 📜LCG.cpp
  ┃ ┣ 📜LCG1.0.cpp
  ┃ ┗ 📜linkedlist.cpp
+ ┣ 📂Report
+ ┃ ┣ 📜Kirin_A15Plus-Resource Usage Summary.csv
+ ┃ ┗ 📜Kirin_A15Plus-Thermal Power Dissipation by Hierarchy.csv
  ┣ 📂Sub-section
- ┃ ┣ 📜.DS_Store
+ ┃ ┣ 📜Benchmark.mif
+ ┃ ┣ 📜Dffn.bdf
+ ┃ ┣ 📜Dffn.bsf
  ┃ ┣ 📜EQ_MI.bsf
  ┃ ┣ 📜EQ_MI.v
  ┃ ┣ 📜Fib_Ram.bsf
- ┃ ┣ 📜Fib_Ram.qip
  ┃ ┣ 📜Fib_Ram.v
- ┃ ┣ 📜Fib_Ram_bb.v
  ┃ ┣ 📜Fibo.bsf
  ┃ ┣ 📜Fibo.v
+ ┃ ┣ 📜Fibo_final.bdf
+ ┃ ┣ 📜Fibo_final.bsf
  ┃ ┣ 📜Instruction.bsf
- ┃ ┣ 📜Instruction.qip
  ┃ ┣ 📜Instruction.v
- ┃ ┣ 📜Instruction_bb.v
  ┃ ┣ 📜Kirin_A15Plus.bdf
  ┃ ┣ 📜Kirin_A15Plus.qpf
  ┃ ┣ 📜Kirin_A15Plus.qsf
- ┃ ┣ 📜Kirin_A15Plus.sdc
- ┃ ┣ 📜Kirin_A15Plus_description.txt
  ┃ ┣ 📜LCG.bsf
  ┃ ┣ 📜LCG.v
  ┃ ┣ 📜LDA_LDI.bsf
@@ -46,23 +48,13 @@ You may assume that the **CPU word length (and the C++ int variables used below)
  ┃ ┣ 📜LKL.bsf
  ┃ ┣ 📜LKL.v
  ┃ ┣ 📜TestMU0.mif
+ ┃ ┣ 📜dec_one.bsf
+ ┃ ┣ 📜dec_one.v
  ┃ ┣ 📜decoder.bsf
  ┃ ┣ 📜decoder.v
- ┃ ┣ 📜fib_stack.bsf
- ┃ ┣ 📜fib_stack.v
  ┃ ┣ 📜state_machine.bsf
- ┃ ┗ 📜state_machine.v
- ┣ 📂Waveforms
- ┃ ┣ 📜Waveform.vwf
- ┃ ┣ 📜Waveform1.vwf
- ┃ ┣ 📜Waveform2.vwf
- ┃ ┣ 📜Waveform3.vwf
- ┃ ┣ 📜Waveform4.vwf
- ┃ ┣ 📜Waveform5.vwf
- ┃ ┣ 📜Waveform6.vwf
- ┃ ┣ 📜Waveform7.vwf
- ┃ ┣ 📜Waveform8.vwf
- ┃ ┗ 📜Waveform9.vwf
+ ┃ ┣ 📜state_machine.v
+ ┃ ┗ 📜trial.bdf
  ┣ 📜.DS_Store
  ┗ 📜README.md
 ```
@@ -73,7 +65,7 @@ You may assume that the **CPU word length (and the C++ int variables used below)
 
 #### Instruction Set:
 
-This is used to help write the decoder verilog file which 0 illustrates port is in use and 1 means not in use.
+This is used to help write the decoder verilog file which 1 illustrates port the is in use, 0 means not in use, and x denotes for don't care. 
 
 | Ins  | op\[15\] | op\[14\] | op\[13\] | op\[12\] |      | EXEC2 | EXEC1 | FETCH | Extra |      |  EQ  |  MI  |      | CON\[0\]: Wren | CON\[1\]:IR_enable & Mux2 | CON\[2\]: *PC_cnt_en* | CON\[3\]: *PC_sload* | CON\[4\]: ALU_add\_sub | CON\[5\]: ACC_enable | CON\[6\]: ACC_shiftin | CON\[7\]: ACC\_sload | CON\[8\]: Mux1 | CON\[9\]: LSL | CON\[10\]: Mux3 |
 | :--: | :------: | :------: | :------: | :------: | ---- | :---: | :---: | :---: | :---: | :--: | :--: | :--: | ---- | :------------: | ------------------------- | :-------------------: | :------------------: | :--------------------: | :------------------: | :-------------------: | :------------------: | :------------: | ------------- | :-------------: |
@@ -132,27 +124,27 @@ This is used to help write the decoder verilog file which 0 illustrates port is 
 
 This list generalises the components used in this task and the corresponding functionality.
 
-|        Name        |        Component        | Quantity |                           Function                           |
-| :----------------: | :---------------------: | :------: | :----------------------------------------------------------: |
-| Instruction + Data | RAM(16 bits&4096 words) |    1     |        Store the instruction and data to be executed         |
-|       EQ_MI        |      Verilog File       |    1     |                 Provide signal to JMI & JEQ                  |
-|      LDA_LDI       |      Verilog File       |    1     |            Overcome the difference in word length            |
-|      Decoder       |      Verilog File       |    1     |       Main control unit that controls each port in CPU       |
-|    Statemachine    |      Verilog File       |    1     |                 Control the state of the CPU                 |
-|     Fibonacci      |      Verilog File       |    1     |  A special block designed specifically for Fibonacci series  |
-|        LCG         |      Verilog File       |    1     | A special block designed specifically for linear congruential generator |
-|        LKL         |      Verilog File       |    1     |    A special block designed specifically for linked list     |
-|        Dffn        |          .bdf           |    1     |                 Store the current the state                  |
-|         IR         |         LPM_FF          |    1     |                Store the current instruction                 |
-|        ALU         |       LPM_ADD_SUB       |    1     |                   Do Arithmetic operation                    |
-|         PC         |       LPM_COUNTER       |    1     |        Record the memory address of next instruction         |
-|        ACC         |      LPM_SHIFTREG       |    1     |           Store the results after most executions            |
-|        MUX1        |         BUSMUX          |    1     | Select between the address from PC and operand from the current instruction |
-|        MUX2        |         BUSMUX          |    1     |               Save one clock cycle after fetch               |
-|        MUX3        |         BUSMUX          |    1     |       Select between the value from ALU or the LDA_LDI       |
-|        MUX4        |         BUXMUX          |    1     |                Select between the ACC and RAM                |
-|        MUX5        |         BUXMUX          |    1     | Select between the PC address and LKL pointing address connected to RAM address |
-|        MUX6        |         BUXMUX          |    1     | Select between the LKL result and other instructions' results connected to accumulator |
+|     Name     |        Component        | Quantity |                           Function                           |
+| :----------: | :---------------------: | :------: | :----------------------------------------------------------: |
+| Instruction  | RAM(16 bits&4096 words) |    1     |        Store the instruction and data to be executed         |
+|    EQ_MI     |      Verilog File       |    1     |                 Provide signal to JMI & JEQ                  |
+|   LDA_LDI    |      Verilog File       |    1     |            Overcome the difference in word length            |
+|   Decoder    |      Verilog File       |    1     |       Main control unit that controls each port in CPU       |
+| Statemachine |      Verilog File       |    1     |                 Control the state of the CPU                 |
+|  Fibonacci   |      Verilog File       |    1     |  A special block designed specifically for Fibonacci series  |
+|     LCG      |      Verilog File       |    1     | A special block designed specifically for linear congruential generator |
+|     LKL      |      Verilog File       |    1     |    A special block designed specifically for linked list     |
+|     Dffn     |          .bdf           |    1     |                 Store the current the state                  |
+|      IR      |         LPM_FF          |    1     |                Store the current instruction                 |
+|     ALU      |       LPM_ADD_SUB       |    1     |                   Do Arithmetic operation                    |
+|      PC      |       LPM_COUNTER       |    1     |        Record the memory address of next instruction         |
+|     ACC      |      LPM_SHIFTREG       |    1     |           Store the results after most executions            |
+|     MUX1     |         BUSMUX          |    1     | Select between the address from PC and operand from the current instruction |
+|     MUX2     |         BUSMUX          |    1     |               Save one clock cycle after fetch               |
+|     MUX3     |         BUSMUX          |    1     |       Select between the value from ALU or the LDA_LDI       |
+|     MUX4     |         NUXMUX          |    1     |                Select between the ACC and RAM                |
+|     MUX5     |         NUXMUX          |    1     | Select between the PC address and LKL pointing address connected to RAM address |
+|     MUX6     |         NUXMUX          |    1     | Select between the LKL result and other instructions' results connected to accumulator |
 
 ---
 
@@ -176,7 +168,7 @@ This benchmark requires a ***stack*** to keep track of all the nested intermedia
 
 `y = y + fib(n-2);`
 
-`return y;}`  --> ***see Fibonacci.cpp in code file***
+`return y;}}`  --> ***see Fibonacci.cpp in code file***
 
 A typical use of the benchmark would be **fib(5)**.
 
@@ -190,7 +182,7 @@ Rather than performing a recursive loop to calculate a Fibonacci number which ha
 
 **ISA: **
 
-It keeps the MU0 ISA so that each instruction is composed of **4 bit opcode + 1 bit random + 11 bit operand**.
+It keeps the MU0 ISA so that each instruction is composed of **4 bit opcode + 12 bit operand**.
 
 
 
@@ -230,9 +222,11 @@ The benchmark code finds N numbers in the sequence and adds them together. A typ
 
 ##### Maths and Programming Method to Find the suitable coefficients a and b:
 
-The pseudo-random numbers are generated by calculate the next number x<sub>n+1</sub> , do a division by 2<sup>N</sup> (which here N is chosen to be the word length N = 16) and then take its remainder. So the range of the remainber is kept in the range [0,2<sup>N-1</sup>].
+The pseudo-random numbers are generated by calculate the next number x<sub>n+1</sub> , do a division by 2<sup>N</sup> (which here N is chosen to be the word length N = 16) and then take its remainder. So the range of the remainder is kept in the range [0,2<sup>N-1</sup>].
 
-In our LCG.cpp program, we put the first 65536 (2<sup>16</sup>) terms of the random numbers generated in a vector and check the elements stored previously see if the repetition happens. If the repetition does not happen in first 65535 terms we can say the coefficients a and b. Here, the optimal a is 73, b is 3. Also, we found whatever the seed we start with, as long as we do not change the coefficients, the answer produced are fixed within a set.
+In our LCG.cpp program, we put the first 65536 (2<sup>16</sup>) terms of the random numbers generated in a vector and check the elements stored previously see if the repetition happens. If the repetition does not happen in first 65535 terms we can say the coefficients a and b. Here, the optimal a is 73, b is 3. Also, we found whatever the seed we start with, as long as we do not change the coefficients, the answer produced are fixed within a set. However, due to the huge latency that caused by the this coefficient, the a is now set to 3, which performs quite well when generating the pseudo-random number. 
+
+
 
 ##### ✨Highlight in this Design:
 
@@ -280,8 +274,85 @@ You will need to create a linked list in your RAM initialisation data to test th
 
 ##### ✨Highlight in this Design:
 
-The LKL instruction cosists of [15:12] opcode, [11:8] target (value x referring to code example) and [7:0] head. The IR will only load the instruction once and the pointing process is achieved by another verilog block which is called LKL.v. This pointing process will keep going until the head -> value is equal to the target value and it will load the address where this value is stored (which is the operand of the previous 16-bit instruction) to accumulator.
+The LKL instruction consists of [15:12] opcode, [11:8] target (value x refering to code example) and [7:0] head. The IR will only load the instruction once and the pointing process is achieved by another verilog block which is called LKL.v. This pointing process will keep going until the head -> value is equal to the target value and it will load the address where this value is stored (which is the operand of the previous 16-bit instruction) to accumulator.
 
 ---
 
 #### 📊Evaluation
+
+Your solution should be evaluated against the following criteria:
+
+1. Test your CPU for correctness by writing the **benchmark algorithms in assembler** and running them on trial data. Compare to results calculated with a paper analysis
+2. **Find the speed of the CPU by counting the number of CPU cycles required to run the benchmarks and see how this figure changes with the size of the problem** (e.g. length of the list) and any implementation options you have tried. Use Quartus to find the maximum clock speed of your design (see detailed instructions), and hence calculate the minimum execution time in microseconds. When trading off performance of each circuit you should minimise the geometric mean time: (T1T2T3)<sup>1/3</sup> where T1, T2, T3 are the times of each algorithm. This gives equal weight to each algorithm.
+3. The **power consumed by a digital circuit relates approximately to the number of logic gates and the clock speed**. Find the number of logic gates (see detailed instructions) to estimate the overall power consumption.
+
+##### 💡About this Design
+
+👉For the worst case:
+
+🕙Time:
+
+F<sub>max</sub> = 12.81MHz 
+
+T<sub>max</sub> =78ns
+
+T<sub>tot</sub> = (T1xT2xT3)<sup>1/3</sup> = 837ns
+
+*Time Breakdown:*
+
+| Task \ Time&Cycles| Time (ns)             | Number of Cycles|
+| :-----------: |:-------------:| :------------:|
+| **T1**     | 624 | 8 cycles |
+| **T2**     | 859    | 11 cycles |
+| **T3** |   1093    | 14 cycles |
+
+🧨Power:
+
+Dynamic Power = 38.16W (CLK speed: 250MHz)
+
+Static Power = 350.19W
+
+I/O Power = 58.28W
+
+Area = 630/56,480
+
+👉For the improvement:
+
+The LCG is the most time consumed section according to the Quartus report. In its verilog block, there is a for loop used in multiplication function. Since the for loop is running recursively each time the multiplication function has been called, for each clock cycle it will waste a lot of time. Then, we spotted this can be improved by only doing the addition once in each clock cycle. Also, the coefficient a can be reduced to 3, it will reduce the multiplication process significantly with the guarantee of the functional performance. Trade-off method is also applied here, even though the time is largely reduced, the latency is increased hugely. 
+
+FIB also consumed a lot of time, by changing some integer type variable to register type variable and using non-blocking assignment methods, the time also got improved a lot.
+
+🕙Time:
+
+F<sub>max</sub> = 110MHz 
+
+T<sub>max</sub> =9.1ns
+
+T<sub>tot</sub> = (T1xT2xT3)<sup>1/3</sup> = 132.4ns
+
+*Time Breakdown:*
+
+| Task \ Time&Cycles| Time (ns)             | Number of Cycles|
+| :-----------: |:-------------:| :------------:|
+| **T1**     | 72.8 | 8 cycles |
+| **T2**     | 318.5 | 35 cycles |
+| **T3** |   100.1   | 11 cycles |
+
+🧨Power:
+
+Dynamic Power<sup>*1</sup> = 13.12mW (CLK speed: 100MHz)
+
+Static Power<sup>*2</sup> = 349.79mW
+
+I/O Power<sup>*3</sup> = 20.14mW
+
+Area = 316/56,480
+
+
+
+*1:Dynamic power: power used by gates and wires changing state. Dependent on clock speed
+
+*2:Static power: power used by the device just being powered up
+
+*3:I/O power can be ignored in your case because your outputs are just debugging signals
+
